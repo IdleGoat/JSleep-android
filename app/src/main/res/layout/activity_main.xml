@@ -4,20 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".jsleep_android.MainActivity">
+    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/Jsleep"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="JSLEEP"
+    <Button
+        android:id="@+id/GoButton"
+        android:layout_width="88dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:text="GO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/NextButton"
+        android:layout_width="88dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:text="NEXT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/PrevButton"
+        android:layout_width="88dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:text="PREV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.383"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/PageViewer"
+        android:layout_width="62dp"
+        android:layout_height="42dp"
+        android:gravity="center_horizontal"
+        android:hint="1"
+        android:inputType="number"
+        android:ems="15"
         android:textStyle="bold"
-        android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.656"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintVertical_bias="0.023" />
+
+    <ListView
+        android:id="@+id/ListEntries"
+        android:layout_width="412dp"
+        android:layout_height="649dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

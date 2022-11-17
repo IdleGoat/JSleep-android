@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rafieAmandioJSleepJS">
+    package="com.rafieAmandioJSleepJS.jsleep_android">
 
     <application
         android:allowBackup="true"
@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Jsleepandroid">
         <activity
-            android:name=".jsleep_android.MainActivity"
+            android:name=".MeActivity"
             android:exported="false" />
         <activity
-            android:name=".jsleep_android.RegisterActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".jsleep_android.LoginActivity"
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

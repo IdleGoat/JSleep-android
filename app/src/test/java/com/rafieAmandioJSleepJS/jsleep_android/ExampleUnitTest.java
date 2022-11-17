@@ -1,4 +1,4 @@
-package com.rafieAmandioJSleepJS;
+package com.rafieAmandioJSleepJS.jsleep_android;
 
 import org.junit.Test;
 

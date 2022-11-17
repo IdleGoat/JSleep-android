@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.rafieAmandioJSleepJS.R;
-
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -32,7 +30,5 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(move);
             }
         });
-
-
     }
 }
