@@ -29,32 +29,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        InputStream filepath = null;
         ArrayList<Room> ListRoom = new ArrayList<>();
         ArrayList<String> listId = new ArrayList<>();
         Gson gson = new Gson();
         try {
-            filepath = getAssets().open("randomRoomList.json");
+            InputStream filepath = getAssets().open("randomRoomList.json");
             BufferedReader reader = new BufferedReader(new InputStreamReader(filepath));
             Room[] temp = gson.fromJson(reader, Room[].class);
             Collections.addAll(ListRoom, temp);
+            for (Room r : ListRoom ) {
+                listId.add(r.name);
+            }
+            ArrayAdapter<String> roomArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,listId);
+            ListView listView = findViewById(R.id.ListEntries);
+            listView.setAdapter(roomArrayAdapter);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (Room r : ListRoom ) {
-            listId.add(r.name);
-        }
-        ArrayAdapter<String> roomArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,listId);
-        ListView listView = findViewById(R.id.ListEntries);
-        listView.setAdapter(roomArrayAdapter);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.top_menu, menu);
-
-        return true;
     }
 
     @Override
@@ -66,4 +58,13 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.top_menu, menu);
+        return true;
+    }
+
+
 }

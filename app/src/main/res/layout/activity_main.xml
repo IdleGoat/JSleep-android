@@ -61,6 +61,7 @@
         android:id="@+id/ListEntries"
         android:layout_width="412dp"
         android:layout_height="649dp"
+        android:layout_marginTop="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
