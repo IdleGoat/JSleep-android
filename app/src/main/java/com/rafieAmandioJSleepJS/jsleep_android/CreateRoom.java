@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.rafieAmandioJSleepJS.jsleep_android.model.BedType;
@@ -23,6 +25,7 @@ public class CreateRoom extends AppCompatActivity {
 
     Context mContext;
     BaseApiService mApiService;
+    Spinner Spinnercity, Spinnerbedtype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,10 @@ public class CreateRoom extends AppCompatActivity {
         mContext = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_room);
-
+        Spinnercity = findViewById(R.id.SpinnerCity);
+        Spinnerbedtype = findViewById(R.id.SpinnerBedType);
+        Spinnerbedtype.setAdapter(new ArrayAdapter<BedType>(this, android.R.layout.simple_spinner_item, BedType.values()));
+        Spinnercity.setAdapter(new ArrayAdapter<City>(this, android.R.layout.simple_spinner_item, City.values()));
 
     }
 
