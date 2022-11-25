@@ -1,0 +1,56 @@
+package com.rafieAmandioJSleepJS.jsleep_android;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.widget.Toast;
+
+import com.rafieAmandioJSleepJS.jsleep_android.model.BedType;
+import com.rafieAmandioJSleepJS.jsleep_android.model.City;
+import com.rafieAmandioJSleepJS.jsleep_android.model.Facility;
+import com.rafieAmandioJSleepJS.jsleep_android.model.Room;
+import com.rafieAmandioJSleepJS.jsleep_android.request.BaseApiService;
+import com.rafieAmandioJSleepJS.jsleep_android.request.UtilsApi;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class CreateRoom extends AppCompatActivity {
+
+    Context mContext;
+    BaseApiService mApiService;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        mApiService = UtilsApi.getApiService();
+        mContext = this;
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_room);
+
+
+    }
+
+    protected Room requestRoom(int id, String name, int size, int price, Facility facility, City city, String address, BedType bedType) {
+        mApiService.createRoom(id,name,size,price,facility,city,address).enqueue(new Callback<Room>() {
+            @Override
+            public void onResponse(Call<Room> call, Response<Room> response) {
+                if (response.isSuccessful()) {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Room> call, Throwable t) {
+                Toast.makeText(mContext, "Fail To Create Room", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return null;
+    }
+
+
+}
+

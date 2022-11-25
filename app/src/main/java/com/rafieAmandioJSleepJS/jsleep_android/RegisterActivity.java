@@ -46,8 +46,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    protected Account requestRegister(String email, String password,String name){
-        mApiService.register(email,password,name).enqueue(new Callback<Account>() {
+
+    protected Account requestRegister(String email, String password, String name ){
+        System.out.println("tEST1");
+        mApiService.register(email, password, name).enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if(response.isSuccessful()){
@@ -56,12 +58,14 @@ public class RegisterActivity extends AppCompatActivity {
                     System.out.println(account.toString());
                     Intent move = new Intent(RegisterActivity.this,LoginActivity.class);
                     startActivity(move);
+                    System.out.println("tEST2");
                 }
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-                Toast.makeText(mContext, "Account Already Exists", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Account Already Registered", Toast.LENGTH_SHORT).show();
+                System.out.println("tEST3");
             }
         });
         return null;
