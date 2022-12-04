@@ -6,6 +6,7 @@ import com.rafieAmandioJSleepJS.jsleep_android.model.Facility;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Renter;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Room;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -14,7 +15,11 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+
+
 public interface BaseApiService {
+
+
 
     @GET("account/{id}")
     Call<Account> getAccount (@Path("id") int id);
@@ -28,6 +33,9 @@ public interface BaseApiService {
     @GET("room/{id}")
     Call<Room> getRoom (@Path("id") int id);
 
+    @POST("account/{id}/topUp")
+    Call<Boolean> topUp (@Path("id") int id, @Query("balance") double balance);
+
     @GET("room/getAllRoom")
     Call<List<Room>> getAllRoom(@Query("page") int page,@Query("pageSize") int pageSize);
 
@@ -37,13 +45,13 @@ public interface BaseApiService {
                                 @Query("address") String address,
                                 @Query("phoneNumber") String phoneNumber);
 
-    @POST("room/createRoom")
+    @POST("room/create")
     Call<Room> createRoom(
             @Query("accountId") int accountId,
             @Query("name") String name,
             @Query("size") int size,
             @Query("price") int price,
-            @Query("facility") Facility facility,
+            @Query("facility") ArrayList<Facility> facility,
             @Query("city") City city,
             @Query("address") String address
     );

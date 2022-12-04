@@ -4,70 +4,211 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     tools:context=".RegisterActivity">
 
-    <EditText
-        android:id="@+id/NameRegister"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/register_imageview"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="232dp"
-        android:layout_marginEnd="101dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:textColor="#999999"
-        app:layout_constraintBottom_toTopOf="@+id/EmailRegister"
+        android:src="@drawable/register_background"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/EmailRegister"
+    <!--Text Login-->
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="101dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:text="Email"
-
-        android:textColor="#999999"
-        app:layout_constraintBottom_toTopOf="@+id/PasswordRegister"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NameRegister" />
-
-    <EditText
-        android:id="@+id/PasswordRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="27dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Password"
-        android:textColor="#999999"
-        app:layout_constraintBottom_toTopOf="@+id/ButtonRegister"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailRegister" />
-
-    <Button
-        android:id="@+id/ButtonRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="153dp"
-        android:layout_marginBottom="230dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/nunitoextrabold"
         android:text="Register"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--Text Selamat Datang-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/nunitosemibold"
+        android:text="Buat Akun Untuk Memulai"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordRegister" />
+        android:layout_marginTop="-200dp"
+        android:background="@drawable/rounded_layout"
+        app:layout_constraintTop_toBottomOf="@+id/register_imageview"
+        android:padding="40dp">
+
+        <EditText
+            android:id="@+id/register_editname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:backgroundTint="@color/placeholder"
+            android:fontFamily="@font/nunitosemibold"
+            android:hint="Username"
+            android:drawableStart="@drawable/profile_logo"
+            android:textColor="@color/placeholder"
+            android:drawablePadding="12dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Edit Text Email-->
+        <EditText
+            android:id="@+id/register_editemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/placeholder"
+            android:drawableStart="@drawable/email_logo"
+            android:layout_marginTop="30dp"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/nunitosemibold"
+            android:hint="Email"
+            android:textColor="@color/placeholder"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_editname" />
+
+        <EditText
+            android:id="@+id/register_editpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:drawableStart="@drawable/password_logo"
+            android:drawablePadding="12dp"
+            android:backgroundTint="@color/placeholder"
+            android:fontFamily="@font/nunitosemibold"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/placeholder"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/register_editemail" />
+        <EditText
+            android:id="@+id/register_confeditpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:drawableStart="@drawable/password_logo"
+            android:drawablePadding="12dp"
+            android:backgroundTint="@color/placeholder"
+            android:fontFamily="@font/nunitosemibold"
+            android:hint="Re-enter your password"
+            android:inputType="textPassword"
+            android:textColor="@color/placeholder"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/register_editpassword" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/register_button"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Masuk"
+            android:textAllCaps="false"
+            android:fontFamily="@font/nunitoextrabold"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_confeditpassword"
+            android:background="@drawable/rounded_button"/>
+
+        <TextView
+            android:id="@+id/register_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_button"
+            android:layout_marginTop="50dp"
+            android:textSize="14sp"
+            android:text="@string/register_daftar"
+
+            android:fontFamily="@font/nunitoregular"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <EditText-->
+<!--        android:id="@+id/NameRegister"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="100dp"-->
+<!--        android:layout_marginTop="232dp"-->
+<!--        android:layout_marginEnd="101dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:text="Name"-->
+<!--        android:textColor="#999999"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/EmailRegister"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/EmailRegister"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="100dp"-->
+<!--        android:layout_marginEnd="101dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="textEmailAddress"-->
+<!--        android:text="Email"-->
+
+<!--        android:textColor="#999999"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/PasswordRegister"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/NameRegister" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/PasswordRegister"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="100dp"-->
+<!--        android:layout_marginEnd="101dp"-->
+<!--        android:layout_marginBottom="27dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="text"-->
+<!--        android:text="Password"-->
+<!--        android:textColor="#999999"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/ButtonRegister"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/EmailRegister" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/ButtonRegister"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="152dp"-->
+<!--        android:layout_marginTop="17dp"-->
+<!--        android:layout_marginEnd="153dp"-->
+<!--        android:layout_marginBottom="230dp"-->
+<!--        android:text="Register"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/PasswordRegister" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,7 @@ package com.rafieAmandioJSleepJS.jsleep_android;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,11 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rafieAmandioJSleepJS.jsleep_android.model.Account;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Renter;
 import com.rafieAmandioJSleepJS.jsleep_android.request.BaseApiService;
 import com.rafieAmandioJSleepJS.jsleep_android.request.UtilsApi;
@@ -30,55 +28,69 @@ public class MeActivity extends AppCompatActivity {
     TextView name,email,balance;
     TextView Me_nameRenterEdit,Me_addressRenterEdit,Me_phoneRenterEdit;
     EditText nameRenterEdit,addressRenterEdit,phoneRenterEdit;
-    Button cancelRenterBtn,registerRenterBtn,card1RegisterRenter;
-    CardView cardRegister,cardDisplay;
-    LinearLayout cardInput;
+    Button cancelRenterBtn,registerRenterBtn,card1RegisterRenter,AddRoomBtn;
+    ConstraintLayout norenter,yesrenter,me_norenter,me_renterregister,me_renterdisplay;
     BaseApiService mApiService;
     Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_me);
 
         mApiService = UtilsApi.getApiService();
         mContext = this;
 
-        name = findViewById(R.id.Me_nameEdit);
-        email = findViewById(R.id.Me_emailEdit);
-        balance = findViewById(R.id.Me_balanceEdit);
+        //find name,email,balance TextView
+        name = findViewById(R.id.me_name);
+        email = findViewById(R.id.me_email);
+        balance = findViewById(R.id.me_balance);
 
+        //Set name,email,balance TextView
         name.setText(LoginActivity.loggedAcc.name);
         email.setText(LoginActivity.loggedAcc.email);
-        balance.setText(String.valueOf(LoginActivity.loggedAcc.balance));
+        String balanceText = "Rp. " + String.valueOf(LoginActivity.loggedAcc.balance);
+        balance.setText( balanceText );
 
-        nameRenterEdit = findViewById(R.id.nameRenter);
-        addressRenterEdit = findViewById(R.id.addressRenter);
-        phoneRenterEdit = findViewById(R.id.phoneRenter);
+        norenter = findViewById(R.id.me_norenterlayout);
+        yesrenter = findViewById(R.id.me_yesrenter);
+
+        nameRenterEdit = findViewById(R.id.me_renter_register_editname);
+        addressRenterEdit = findViewById(R.id.me_renter_register_editaddress);
+        phoneRenterEdit = findViewById(R.id.me_renter_register_editphone);
 
 
-        cancelRenterBtn = findViewById(R.id.Me_cancelButton);
-        registerRenterBtn = findViewById(R.id.Me_registerButton);
+        cancelRenterBtn = findViewById(R.id.me_renter_register_cancelbutton);
+        registerRenterBtn = findViewById(R.id.me_renter_register_registerbutton);
 
-        card1RegisterRenter = findViewById(R.id.Me_registerRenterButton);
-        cardRegister = findViewById(R.id.card2_LinearLayout);
-        cardDisplay = findViewById(R.id.card2_cardView);
-        cardInput = findViewById(R.id.card1_LinearLayout);
+        card1RegisterRenter = findViewById(R.id.me_renter_norenter_button);
+        me_norenter = findViewById(R.id.me_renter_norenter);
+        me_renterdisplay = findViewById(R.id.me_renter_display);
+        me_renterregister = findViewById(R.id.me_renter_register);
 
-        Me_nameRenterEdit = findViewById(R.id.Me_nameRenterEdit);
-        Me_addressRenterEdit = findViewById(R.id.Me_addressRenterEdit);
-        Me_phoneRenterEdit = findViewById(R.id.Me_phoneNumberEdit);
+        Me_nameRenterEdit = findViewById(R.id.me_renter_display_name);
+        Me_addressRenterEdit = findViewById(R.id.me_renter_display_address);
+        Me_phoneRenterEdit = findViewById(R.id.me_renter_display_phone);
+
+        AddRoomBtn = findViewById(R.id.me_renter_display_addbutton);
 
         if(LoginActivity.loggedAcc.renter == null){
-            cardRegister.setVisibility(View.VISIBLE);
-            cardDisplay.setVisibility(View.INVISIBLE);
-            cardInput.setVisibility(View.INVISIBLE);
+            norenter.setVisibility(View.VISIBLE);
+            yesrenter.setVisibility(View.INVISIBLE);
+            me_norenter.setVisibility(View.VISIBLE);
+            me_renterdisplay.setVisibility(View.INVISIBLE);
+            me_renterregister.setVisibility(View.INVISIBLE);
             card1RegisterRenter.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    cardRegister.setVisibility(View.INVISIBLE);
-                    cardDisplay.setVisibility(View.INVISIBLE);
-                    cardInput.setVisibility(View.VISIBLE);
+                    me_norenter.setVisibility(View.INVISIBLE);
+                    me_renterdisplay.setVisibility(View.INVISIBLE);
+                    me_renterregister.setVisibility(View.VISIBLE);
                 }
             });
             registerRenterBtn.setOnClickListener(new View.OnClickListener() {
@@ -90,20 +102,29 @@ public class MeActivity extends AppCompatActivity {
             cancelRenterBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    cardRegister.setVisibility(View.VISIBLE);
-                    cardDisplay.setVisibility(View.INVISIBLE);
-                    cardInput.setVisibility(View.INVISIBLE);
+                    me_norenter.setVisibility(View.VISIBLE);
+                    me_renterdisplay.setVisibility(View.INVISIBLE);
+                    me_renterregister.setVisibility(View.INVISIBLE);
                 }
             });
         }
 
         if(LoginActivity.loggedAcc.renter != null){
+            norenter.setVisibility(View.INVISIBLE);
+            yesrenter.setVisibility(View.VISIBLE);
             Me_nameRenterEdit.setText(LoginActivity.loggedAcc.renter.username);
             Me_phoneRenterEdit.setText(LoginActivity.loggedAcc.renter.phoneNumber);
             Me_addressRenterEdit.setText(LoginActivity.loggedAcc.renter.address);
-            cardRegister.setVisibility(View.INVISIBLE);
-            cardDisplay.setVisibility(View.VISIBLE);
-            cardInput.setVisibility(View.INVISIBLE);
+            me_norenter.setVisibility(View.INVISIBLE);
+            me_renterdisplay.setVisibility(View.VISIBLE);
+            me_renterregister.setVisibility(View.INVISIBLE);
+            AddRoomBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MeActivity.this, CreateRoomActivity.class);
+                    startActivity(intent);
+                }
+            });
 
         }
 
@@ -146,7 +167,7 @@ public class MeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add_button) {
-            Intent move = new Intent(MeActivity.this, CreateRoom.class);
+            Intent move = new Intent(MeActivity.this, CreateRoomActivity.class);
             startActivity(move);
             return true;
         }

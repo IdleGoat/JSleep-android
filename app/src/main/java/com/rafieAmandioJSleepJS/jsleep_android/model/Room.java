@@ -13,7 +13,7 @@ public class Room extends Serializable{
     public City city;
     public int size;
     public BedType bedType;
-    public Facility facility;
+    public ArrayList<Facility> facility;
 
 
     public Room(int id) {

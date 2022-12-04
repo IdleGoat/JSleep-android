@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">jsleep-android</string>
+    <string name="login_daftar"><u>Belum Punya Akun?</u></string>
+    <string name="register_daftar"><u>Sudah Punya Akun?</u></string>
 </resources>

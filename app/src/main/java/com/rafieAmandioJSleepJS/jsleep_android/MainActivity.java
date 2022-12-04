@@ -1,46 +1,41 @@
 package com.rafieAmandioJSleepJS.jsleep_android;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
+import com.rafieAmandioJSleepJS.jsleep_android.model.Account;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Room;
 import com.rafieAmandioJSleepJS.jsleep_android.request.BaseApiService;
 import com.rafieAmandioJSleepJS.jsleep_android.request.UtilsApi;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * A main activity that shows the list of rooms.
+ * @author Rafie
+ * @version 1.0
+ */
 public class MainActivity extends AppCompatActivity {
+
 
     BaseApiService mApiService;
     Context mContext;
-    Button next,prev;
-    List<Room> roomdisp;
+    ImageView next,prev;
+    ImageView profile;
     List<Room> activitylist;
     int current;
 
@@ -50,76 +45,71 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         current = 0;
         super.onCreate(savedInstanceState);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         setContentView(R.layout.activity_main);
+        profile = findViewById(R.id.main_profileimage);
         mApiService = UtilsApi.getApiService();
         mContext = this;
-        activitylist = getRoomList(current,7);
-        next = findViewById(R.id.NextButton);
-        prev = findViewById(R.id.PrevButton);
+        activitylist = getRoomList(current);
+        profile.setOnClickListener(v -> {
+            Intent move = new Intent(MainActivity.this,MeActivity.class);
+            startActivity(move);
+        });
+        next = findViewById(R.id.main_nextbutton);
+        prev = findViewById(R.id.main_prevbutton);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 current += 1;
-                activitylist = getRoomList(current,7);
+                activitylist = getRoomList(current);
             }
         });
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                current -= 1;
-                activitylist = getRoomList(current,7);
+                if(current == 0){
+                    Toast.makeText(mContext, "You are at the first page", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    current -= 1;
+                    activitylist = getRoomList(current);
+                }
             }
         });
-//        ArrayList<String> listId = new ArrayList<>();
-//        Gson gson = new Gson();
-//        try {
-//            InputStream filepath = getAssets().open("randomRoomList.json");
-//            BufferedReader reader = new BufferedReader(new InputStreamReader(filepath));
-//            Room[] temp = gson.fromJson(reader, Room[].class);
-//            Collections.addAll(ListRoom, temp);
-//            for (Room r : ListRoom ) {
-//                listId.add(r.name);
-//            }
-//            ArrayAdapter<String> roomArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,listId);
-//            ListView listView = findViewById(R.id.ListEntries);
-//            listView.setAdapter(roomArrayAdapter);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.profile_button) {
-            Intent move = new Intent(MainActivity.this, MeActivity.class);
-            startActivity(move);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.top_menu, menu);
-        return true;
-    }
+    /**
+     * This Function is used to get the list of room
+     * @param page is the page number
+     * @return the list of room
+     * @see Room
+     * @author Rafie Amandio Fauzan
+     */
 
-    protected List<Room> getRoomList(int page, int pageSize) {
+    protected List<Room> getRoomList(int page) {
         //System.out.println(pageSize);
-        mApiService.getAllRoom(page, pageSize).enqueue(new Callback<List<Room>>() {
+        mApiService.getAllRoom(page, 5).enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                 if (response.isSuccessful()) {
+
+                    List<Room> roomdisp = response.body();
                     ArrayList<String> temp = new ArrayList<>();
-                    roomdisp = response.body();
-                    for(Room i : roomdisp){
-                        temp.add(i.name);
-                    }
+
+                    assert roomdisp != null;
+                    ArrayList<Room> listRoom = new ArrayList<Room>(roomdisp);
+
+                    CustomListAdapter adapter = new CustomListAdapter(mContext, listRoom);
                     ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1,temp);
-                    ListView listView = (ListView) findViewById(R.id.ListEntries);
-                    listView.setAdapter(itemAdapter);
+                    ListView listView = (ListView) findViewById(R.id.main_availableRoomsList);
+                    listView.setAdapter(adapter);
                     System.out.println("Berhasil get Room");
                 }
             }

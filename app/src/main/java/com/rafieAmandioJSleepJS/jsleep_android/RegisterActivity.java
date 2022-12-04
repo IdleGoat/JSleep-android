@@ -29,10 +29,10 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         mApiService = UtilsApi.getApiService();
         mContext = this;
-        EditText email = findViewById(R.id.EmailRegister);
-        EditText pass = findViewById(R.id.PasswordRegister);
-        EditText name = findViewById(R.id.NameRegister);
-        Button register = findViewById(R.id.ButtonRegister);
+        EditText email = findViewById(R.id.register_editemail);
+        EditText pass = findViewById(R.id.register_editpassword);
+        EditText name = findViewById(R.id.register_editname);
+        Button register = findViewById(R.id.register_button);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
