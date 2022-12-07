@@ -27,8 +27,9 @@ import retrofit2.Response;
 public class MeActivity extends AppCompatActivity {
     TextView name,email,balance;
     TextView Me_nameRenterEdit,Me_addressRenterEdit,Me_phoneRenterEdit;
-    EditText nameRenterEdit,addressRenterEdit,phoneRenterEdit;
-    Button cancelRenterBtn,registerRenterBtn,card1RegisterRenter,AddRoomBtn;
+    EditText nameRenterEdit,addressRenterEdit,phoneRenterEdit,me_topUpEdit;
+
+    Button cancelRenterBtn,registerRenterBtn,card1RegisterRenter,AddRoomBtn,TopUpBtn;
     ConstraintLayout norenter,yesrenter,me_norenter,me_renterregister,me_renterdisplay;
     BaseApiService mApiService;
     Context mContext;
@@ -46,6 +47,7 @@ public class MeActivity extends AppCompatActivity {
         mApiService = UtilsApi.getApiService();
         mContext = this;
 
+        TopUpBtn = findViewById(R.id.me_topupbutton);
         //find name,email,balance TextView
         name = findViewById(R.id.me_name);
         email = findViewById(R.id.me_email);
@@ -78,6 +80,14 @@ public class MeActivity extends AppCompatActivity {
         Me_phoneRenterEdit = findViewById(R.id.me_renter_display_phone);
 
         AddRoomBtn = findViewById(R.id.me_renter_display_addbutton);
+        me_topUpEdit = findViewById(R.id.me_topupedit);
+
+        TopUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TopUp(LoginActivity.loggedAcc.id,Double.parseDouble(me_topUpEdit.getText().toString()));
+            }
+        });
 
         if(LoginActivity.loggedAcc.renter == null){
             norenter.setVisibility(View.VISIBLE);
@@ -141,8 +151,7 @@ public class MeActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     System.out.println("Berhasil Register Renter");
                     LoginActivity.loggedAcc.renter = response.body();
-                    Intent move = new Intent(MeActivity.this,MeActivity.class);
-                    startActivity(move);
+                    recreate();
                 }
             }
 
@@ -172,6 +181,25 @@ public class MeActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    protected Renter TopUp(int id, double balance){
+        mApiService.topUp(id,balance).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(mContext, "Top Up Success", Toast.LENGTH_SHORT).show();
+                    LoginActivity.loggedAcc.balance = LoginActivity.loggedAcc.balance + balance;
+                    recreate();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Toast.makeText(mContext, "Top Up Fail", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return null;
     }
 }
 

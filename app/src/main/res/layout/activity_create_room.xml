@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".CreateRoomActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,11 +72,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <CheckBox
+                    <ToggleButton
                         android:id="@+id/CheckAC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/toggle_button_createroom"
                         android:layout_weight="1"
+                        android:textOn="AC Checked"
+                        android:textOff="AC Gak Checked"
                         android:text="AC" />
 
                     <CheckBox

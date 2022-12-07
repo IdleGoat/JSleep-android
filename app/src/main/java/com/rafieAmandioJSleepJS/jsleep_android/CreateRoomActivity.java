@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.rafieAmandioJSleepJS.jsleep_android.model.BedType;
 import com.rafieAmandioJSleepJS.jsleep_android.model.City;
@@ -29,9 +30,10 @@ public class CreateRoomActivity extends AppCompatActivity {
     Context mContext;
     BaseApiService mApiService;
     Button btnCreateRoom;
+    ToggleButton ac;
     EditText etName, etSize, etPrice, etAddress;
     ArrayList<Facility> facility = new ArrayList<Facility>();
-    CheckBox ac, fridge, wifi, bathub, balcony, restaurant, pool, fitness;
+    CheckBox  fridge, wifi, bathub, balcony, restaurant, pool, fitness;
     Spinner Spinnercity, Spinnerbedtype;
 
     @Override

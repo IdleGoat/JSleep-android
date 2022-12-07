@@ -212,6 +212,7 @@
                     android:id="@+id/me_topupedit"
                     android:layout_width="0dp"
                     android:layout_weight="3"
+                    android:inputType="number"
                     android:layout_height="wrap_content"
                     android:paddingStart="5dp"
                     android:drawableStart="@drawable/money_icon"

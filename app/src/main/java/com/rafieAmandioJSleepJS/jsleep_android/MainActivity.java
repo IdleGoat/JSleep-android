@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
     Context mContext;
     ImageView next,prev;
     ImageView profile;
+    ListView listView;
     List<Room> activitylist;
+    public static ArrayList<Room> listRoom;
+    public static int roomIndex;
     int current;
 
 
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         });
         next = findViewById(R.id.main_nextbutton);
         prev = findViewById(R.id.main_prevbutton);
+        listView = (ListView) findViewById(R.id.main_availableRoomsList);
+        listView.setOnItemClickListener(this::onItemClick);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,18 +106,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                 if (response.isSuccessful()) {
-
-                    List<Room> roomdisp = response.body();
-                    ArrayList<String> temp = new ArrayList<>();
-
-                    assert roomdisp != null;
-                    ArrayList<Room> listRoom = new ArrayList<Room>(roomdisp);
-
+                    activitylist = response.body();
+                    assert activitylist != null;
+                    listRoom = new ArrayList<Room>(activitylist);
                     CustomListAdapter adapter = new CustomListAdapter(mContext, listRoom);
-                    ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1,temp);
-                    ListView listView = (ListView) findViewById(R.id.main_availableRoomsList);
                     listView.setAdapter(adapter);
                     System.out.println("Berhasil get Room");
+                    
+
                 }
             }
             @Override
@@ -121,5 +124,27 @@ public class MainActivity extends AppCompatActivity {
 
         });
         return null;
+    }
+
+    /**
+     *
+     * @param v is the view
+     * @param position is the position of the room
+     * @param id is the id of the room
+     * @author Rafie Amandio Fauzan
+     */
+
+    public void onItemClick (AdapterView<?> l, View v, int position, long id){
+        System.out.println("onItemClick Success");
+        Log.i("ListView", "You clicked Item np : " + id + " at position:" + position);
+        // Then you start a new Activity via Intent
+        Intent intent = new Intent();
+        roomIndex = position;
+        System.out.println("clicked");
+
+        intent.setClass(mContext, DetailRoomActivity.class);
+        intent.putExtra("position", position);
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 }
