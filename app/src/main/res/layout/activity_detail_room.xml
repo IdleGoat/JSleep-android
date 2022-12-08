@@ -185,6 +185,8 @@
                         android:layout_height="wrap_content"
                         android:text="DSADASD"/>
                 </LinearLayout>
+
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_columnWeight="1"
@@ -211,6 +213,7 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/detail_bookbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"

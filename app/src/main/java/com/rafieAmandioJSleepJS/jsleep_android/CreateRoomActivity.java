@@ -116,11 +116,12 @@ public class CreateRoomActivity extends AppCompatActivity {
      * @return
      */
     protected Room requestRoom(int id, String name, int size, int price, ArrayList<Facility> facility, City city, String address, BedType bedType) {
-        System.out.println(facility);
+
         mApiService.createRoom(id,name,size,price,facility,city,address).enqueue(new Callback<Room>() {
             @Override
             public void onResponse(Call<Room> call, Response<Room> response) {
                 if (response.isSuccessful()) {
+                    System.out.println("Request Berhasil");
                     Room responseq = response.body();
                     System.out.println(responseq.toString());
 

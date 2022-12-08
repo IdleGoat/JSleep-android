@@ -12,6 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Jsleepandroid">
         <activity
+            android:name=".CreatePaymentActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".BuyerOrderActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".PaymentDetailActivity"
             android:exported="false">
             <meta-data

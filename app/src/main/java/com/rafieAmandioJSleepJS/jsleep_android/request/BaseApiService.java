@@ -3,6 +3,7 @@ package com.rafieAmandioJSleepJS.jsleep_android.request;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Account;
 import com.rafieAmandioJSleepJS.jsleep_android.model.City;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Facility;
+import com.rafieAmandioJSleepJS.jsleep_android.model.Payment;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Renter;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Room;
 
@@ -20,6 +21,12 @@ import retrofit2.http.Query;
 public interface BaseApiService {
 
 
+    @POST("payment/create")
+    Call<Payment> createPayment(@Query("buyerId") int buyerId,
+                                @Query("renterId") int renterId,
+                                @Query("roomId") int roomId,
+                                @Query("from") String from,
+                                @Query("to") String to);
 
     @GET("account/{id}")
     Call<Account> getAccount (@Path("id") int id);

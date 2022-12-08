@@ -44,8 +44,13 @@ public class LoginActivity extends AppCompatActivity {
         mApiService = UtilsApi.getApiService();
         mContext = this;
         TextView register = findViewById(R.id.login_register);
+
+
+
         email = findViewById(R.id.login_editemail);
         password = findViewById(R.id.login_editpassword);
+
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,12 +58,22 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(move);
             }
         });
+
+
+
         Button loginbutton = findViewById(R.id.login_button);
+
+
+
+
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String emailtemp = email.getText().toString();
                 String passtemp = password.getText().toString();
+
+
+
                 Account account = requestLogin(emailtemp,passtemp);
 
 
@@ -75,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
      * @see Account
      */
     protected Account requestLogin(String email,String password){
+
         mApiService.login(email,password).enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
