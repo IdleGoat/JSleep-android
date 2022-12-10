@@ -40,7 +40,7 @@ public class RenterSeeOrderActivity extends AppCompatActivity {
         mContext = this;
         orderList = findViewById(R.id.seeorder_ListView);
         orderList.setOnItemClickListener(this::onItemClick);
-        getOrderForRenter(LoginActivity.loggedAcc.renter.id);
+        getOrderForRenter(LoginActivity.loggedAcc.id);
 
 
 

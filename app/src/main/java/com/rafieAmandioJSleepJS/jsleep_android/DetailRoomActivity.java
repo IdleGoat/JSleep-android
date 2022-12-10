@@ -11,7 +11,7 @@ import com.rafieAmandioJSleepJS.jsleep_android.model.Room;
 
 public class DetailRoomActivity extends AppCompatActivity {
 
-    public static Room clickedRoom = MainActivity.listRoom.get(MainActivity.roomIndex);
+    public static Room clickedRoom;
     TextView nametext,addresstext,sizetext;
     Button bookbutton;
 
@@ -23,6 +23,7 @@ public class DetailRoomActivity extends AppCompatActivity {
         }
         catch (NullPointerException e){}
         super.onCreate(savedInstanceState);
+        clickedRoom = MainActivity.listRoom.get(MainActivity.roomIndex);
         setContentView(R.layout.activity_detail_room);
         nametext = findViewById(R.id.detail_nametext);
         addresstext = findViewById(R.id.detail_addresstext);

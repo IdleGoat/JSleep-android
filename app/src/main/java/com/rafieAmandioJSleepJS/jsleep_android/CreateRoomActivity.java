@@ -81,7 +81,7 @@ public class CreateRoomActivity extends AppCompatActivity {
                 facility.add(Facility.Balcony);
             }
             if (restaurant.isChecked()) {
-                facility.add(Facility.Refrigerator);
+                facility.add(Facility.Restaurant);
             }
             if (pool.isChecked()) {
                 facility.add(Facility.SwimmingPool);
