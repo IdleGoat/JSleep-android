@@ -29,7 +29,7 @@ public class MeActivity extends AppCompatActivity {
     TextView Me_nameRenterEdit,Me_addressRenterEdit,Me_phoneRenterEdit;
     EditText nameRenterEdit,addressRenterEdit,phoneRenterEdit,me_topUpEdit;
 
-    Button cancelRenterBtn,registerRenterBtn,card1RegisterRenter,AddRoomBtn,TopUpBtn;
+    Button cancelRenterBtn,registerRenterBtn,card1RegisterRenter,AddRoomBtn,TopUpBtn,SeeOrderBtn;
     ConstraintLayout norenter,yesrenter,me_norenter,me_renterregister,me_renterdisplay;
     BaseApiService mApiService;
     Context mContext;
@@ -80,6 +80,7 @@ public class MeActivity extends AppCompatActivity {
         Me_phoneRenterEdit = findViewById(R.id.me_renter_display_phone);
 
         AddRoomBtn = findViewById(R.id.me_renter_display_addbutton);
+        SeeOrderBtn = findViewById(R.id.me_renter_display_seeorderbutton);
         me_topUpEdit = findViewById(R.id.me_topupedit);
 
         TopUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -128,10 +129,19 @@ public class MeActivity extends AppCompatActivity {
             me_norenter.setVisibility(View.INVISIBLE);
             me_renterdisplay.setVisibility(View.VISIBLE);
             me_renterregister.setVisibility(View.INVISIBLE);
+
             AddRoomBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(MeActivity.this, CreateRoomActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            SeeOrderBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MeActivity.this, RenterSeeOrderActivity.class);
                     startActivity(intent);
                 }
             });

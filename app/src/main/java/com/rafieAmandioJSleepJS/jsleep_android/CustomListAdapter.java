@@ -41,5 +41,4 @@ public class CustomListAdapter extends ArrayAdapter<Room> {
         return currentItemView;
     }
 
-
 }

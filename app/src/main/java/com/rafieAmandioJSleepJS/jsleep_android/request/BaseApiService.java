@@ -17,10 +17,22 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
-
+/**
+ * A base API service that contains all the API calls.
+ * @author Rafie Amandio
+ */
 public interface BaseApiService {
 
 
+    /**
+     * A method that calls the API to create a payment.
+     * @param buyerId the buyer's id
+     * @param renterId the renter's id
+     * @param roomId the room's id
+     * @param from the start date
+     * @param to the end date
+     * @return a call to the API
+     */
     @POST("payment/create")
     Call<Payment> createPayment(@Query("buyerId") int buyerId,
                                 @Query("renterId") int renterId,
@@ -62,5 +74,15 @@ public interface BaseApiService {
             @Query("city") City city,
             @Query("address") String address
     );
+
+    @POST("payment/{id}/accept")
+    Call<Boolean> accept(@Path("id") int id);
+
+    @POST("payment/{id}/cancel")
+    Call<Boolean> cancel(@Path("id") int id);
+
+    @GET("payment/getOrderForRenter")
+    Call<List<Payment>> getOrderForRenter(@Query("renterId") int renterId,@Query("page") int page,@Query("pageSize") int pageSize);
+
 
 }
