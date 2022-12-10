@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class MeActivity extends AppCompatActivity {
     TextView name,email,balance;
     TextView Me_nameRenterEdit,Me_addressRenterEdit,Me_phoneRenterEdit;
     EditText nameRenterEdit,addressRenterEdit,phoneRenterEdit,me_topUpEdit;
+    ImageView logout;
 
     Button cancelRenterBtn,registerRenterBtn,card1RegisterRenter,AddRoomBtn,TopUpBtn,SeeOrderBtn;
     ConstraintLayout norenter,yesrenter,me_norenter,me_renterregister,me_renterdisplay;
@@ -46,7 +48,14 @@ public class MeActivity extends AppCompatActivity {
 
         mApiService = UtilsApi.getApiService();
         mContext = this;
-
+        logout = findViewById(R.id.me_logoutbutton);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MeActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         TopUpBtn = findViewById(R.id.me_topupbutton);
         //find name,email,balance TextView
         name = findViewById(R.id.me_name);

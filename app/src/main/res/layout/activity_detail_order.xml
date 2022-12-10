@@ -8,6 +8,7 @@
     android:background="@color/background"
     tools:context=".DetailOrderActivity">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/orderdetail_filltextviewidbuyer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunitoregular"
@@ -34,6 +36,73 @@
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/orderdetail_textviewidbuyer" />
+
+        <TextView
+            android:id="@+id/orderdetail_textviewfromdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nunitobold"
+            android:text="From"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderdetail_filltextviewidbuyer" />
+
+        <TextView
+            android:id="@+id/orderdetail_filltextviewfromdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitoregular"
+            android:layout_marginTop="10dp"
+            android:text="From Date"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderdetail_textviewfromdate" />
+
+        <TextView
+            android:id="@+id/orderdetail_textviewtodate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nunitobold"
+            android:text="To"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderdetail_filltextviewfromdate" />
+
+        <TextView
+            android:id="@+id/orderdetail_filltextviewtodate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitoregular"
+            android:layout_marginTop="10dp"
+            android:text="To Date"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderdetail_textviewtodate" />
+
+        <TextView
+            android:id="@+id/orderdetail_textviewstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nunitobold"
+            android:text="Status"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderdetail_filltextviewtodate" />
+
+        <TextView
+            android:id="@+id/orderdetail_filltextviewstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitoregular"
+            android:layout_marginTop="10dp"
+            android:text="Status"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderdetail_textviewstatus" />
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/orderdetail_buttonaccept"

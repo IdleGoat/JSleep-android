@@ -9,7 +9,6 @@
     tools:context=".DetailRoomActivity">
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/detail_imagelayout"
         android:layout_width="match_parent"
@@ -169,40 +168,13 @@
                 android:rowCount="4"
                 android:columnCount="2">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_height="wrap_content">
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textSize="10sp"
+                    android:background="@drawable/togglebutton_selector"
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/arrow_icon"
-                        android:layout_gravity="center"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="DSADASD"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_columnWeight="1"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/arrow_icon"
-                        android:layout_gravity="center"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="DSADASD"/>
-                </LinearLayout>
+                    />
 
             </GridLayout>
 

@@ -27,6 +27,16 @@
             android:id="@+id/me_profilelayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/me_logoutbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logout_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"/>
             <TextView
                 android:id="@+id/me_aboutme"
                 android:layout_width="wrap_content"
@@ -286,7 +296,7 @@
                 android:id="@+id/me_renter_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/me_rentertext">
 
@@ -312,10 +322,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:backgroundTint="@color/placeholder"
-                    android:drawableStart="@drawable/email_logo"
+                    android:drawableStart="@drawable/address_icon"
                     android:drawablePadding="12dp"
                     android:fontFamily="@font/nunitosemibold"
-                    android:hint="Email"
+                    android:hint="Address"
                     android:textColor="@color/placeholder"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -328,10 +338,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:backgroundTint="@color/placeholder"
-                    android:drawableStart="@drawable/password_logo"
+                    android:drawableStart="@drawable/phone_icon"
                     android:drawablePadding="12dp"
                     android:fontFamily="@font/nunitosemibold"
-                    android:hint="Password"
+                    android:hint="PhoneNumber"
                     android:inputType="textPassword"
                     android:textColor="@color/placeholder"
                     android:textSize="18sp"
@@ -384,7 +394,7 @@
                 android:id="@+id/me_renter_display"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/me_rentertext">
 
@@ -392,100 +402,102 @@
                     android:id="@+id/me_renter_display_nametext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nama"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
                     android:fontFamily="@font/nunitobold"
+                    android:text="Nama"
                     android:textColor="@color/placeholder"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/me_renter_display_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nama"
                     android:layout_marginTop="5dp"
-                    android:textSize="18sp"
                     android:fontFamily="@font/nunitoregular"
+                    android:text="Nama"
                     android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@+id/me_renter_display_nametext"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/me_renter_display_nametext" />
 
                 <TextView
                     android:id="@+id/me_renter_display_addresstext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Address"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
                     android:fontFamily="@font/nunitobold"
+                    android:text="Address"
                     android:textColor="@color/placeholder"
-                    app:layout_constraintTop_toBottomOf="@+id/me_renter_display_name"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/me_renter_display_name" />
+
                 <TextView
                     android:id="@+id/me_renter_display_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Address"
                     android:layout_marginTop="5dp"
-                    android:textSize="18sp"
                     android:fontFamily="@font/nunitoregular"
+                    android:text="Address"
                     android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@+id/me_renter_display_addresstext"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/me_renter_display_addresstext" />
 
                 <TextView
                     android:id="@+id/me_renter_display_phonetext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone Number"
                     android:layout_marginTop="10dp"
-                    android:textSize="15sp"
                     android:fontFamily="@font/nunitobold"
+                    android:text="Phone Number"
                     android:textColor="@color/placeholder"
-                    app:layout_constraintTop_toBottomOf="@+id/me_renter_display_address"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/me_renter_display_address" />
+
                 <TextView
                     android:id="@+id/me_renter_display_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone Number"
                     android:layout_marginTop="5dp"
-                    android:textSize="18sp"
                     android:fontFamily="@font/nunitoregular"
+                    android:text="Phone Number"
                     android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@+id/me_renter_display_phonetext"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/me_renter_display_phonetext" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@id/me_renter_display_phone"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/me_renter_display_phone">
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:layout_weight="1"
                         android:id="@+id/me_renter_display_addbutton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:background="@drawable/rounded_button"
+                        android:fontFamily="@font/nunitobold"
                         android:text="Add Room"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/nunitobold" />
+                        android:textColor="@color/white" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:layout_weight="1"
-                        android:layout_marginStart="20dp"
                         android:id="@+id/me_renter_display_seeorderbutton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1"
                         android:background="@drawable/hollow_button"
-                        android:text="See Order"
-                        android:textColor="@color/primary"
                         android:fontFamily="@font/nunitobold"
-                        />
+                        android:text="See Order"
+                        android:textColor="@color/primary" />
 
                 </LinearLayout>
 
