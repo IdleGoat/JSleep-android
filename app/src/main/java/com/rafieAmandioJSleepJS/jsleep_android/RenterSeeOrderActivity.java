@@ -34,6 +34,11 @@ public class RenterSeeOrderActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_renter_see_order);
         mApiService = UtilsApi.getApiService();

@@ -63,13 +63,14 @@
                 android:orientation="horizontal">
 
                 <TextView
+
                     android:id="@+id/detail_nametext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hotel Melati"
                     android:fontFamily="@font/nunitobold"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
+                    android:textSize="30sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     />
@@ -83,6 +84,7 @@
                     android:textColor="@color/white"
                     android:layout_marginStart="5dp"
                     android:paddingVertical="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:text="4.9"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -91,12 +93,12 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="25dp"
                 android:id="@+id/detail_addresslayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/detail_titlelayout"
+                app:layout_constraintTop_toBottomOf="@id/detail_pricetext"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -130,25 +132,76 @@
             </LinearLayout>
 
 
-
             <TextView
                 android:id="@+id/detail_pricetext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/detail_addresslayout"
+                app:layout_constraintTop_toBottomOf="@id/detail_titlelayout"
                 app:layout_constraintStart_toStartOf="parent"
-                android:fontFamily="@font/nunitobold"
-                android:textSize="20dp"
-                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nunitosemibold"
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/black"
                 android:text="Rp 200.000 / Malam"/>
+
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/detail_spinnerlayout"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/detail_addresslayout">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/bed_icon"/>
+                    <TextView
+                        android:id="@+id/detail_filltextviewbed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text="Single"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/city_icon"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/detail_filltextviewcity"
+                        android:text="Jakarta"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/detail_descriptionfacilitytext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunitobold"
-                app:layout_constraintTop_toBottomOf="@id/detail_pricetext"
+                app:layout_constraintTop_toBottomOf="@id/detail_spinnerlayout"
                 app:layout_constraintStart_toStartOf="parent"
                 android:textColor="@color/black"
                 android:textSize="18dp"
@@ -156,30 +209,176 @@
                 android:text="Fasilitas Yang Tersedia"
                 />
 
+
             <LinearLayout
+                android:id="@+id/detail_facilitylayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/detail_descriptionfacilitytext">
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:useDefaultMargins="true"
                 android:padding="5dp"
-                android:rowCount="4"
-                android:columnCount="2">
+                app:layout_constraintTop_toBottomOf="@id/detail_descriptionfacilitytext">
 
                 <ToggleButton
+                    android:textColor="@drawable/toggletext_selector"
+                    android:clickable="false"
+                    android:id="@+id/detail_wifi"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:textSize="10sp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:drawableStart="@drawable/detail_wifi"
+                    android:fontFamily="@font/nunitosemibold"
+                    android:textSize="14sp"
+                    android:textOff="Wifi"
+                    android:textOn="Wifi"
+                    android:textAllCaps="false"
                     android:background="@drawable/togglebutton_selector"
 
                     />
 
-            </GridLayout>
+                <ToggleButton
+                    android:textColor="@drawable/toggletext_selector"
+                    android:clickable="false"
+                    android:id="@+id/detail_bathtub"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:drawableStart="@drawable/detail_bath"
+                    android:fontFamily="@font/nunitosemibold"
+                    android:textSize="14sp"
+                    android:textOff="Bathtub"
+                    android:textOn="Bathtub"
+                    android:textAllCaps="false"
+                    android:background="@drawable/togglebutton_selector"
+                    />
+
+                <ToggleButton
+                    android:textColor="@drawable/toggletext_selector"
+                    android:clickable="false"
+                    android:id="@+id/detail_balcony"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:drawableStart="@drawable/detail_balcony"
+                    android:fontFamily="@font/nunitosemibold"
+                    android:textSize="14sp"
+                    android:textOff="Balcony"
+                    android:textOn="Balcony"
+                    android:textAllCaps="false"
+                    android:background="@drawable/togglebutton_selector"
+                    />
+            </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/detail_facilitylayout2"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_facilitylayout1">
+
+                    <ToggleButton
+                        android:textColor="@drawable/toggletext_selector"
+                        android:clickable="false"
+                        android:id="@+id/detail_ac"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:drawableStart="@drawable/detail_ac"
+                        android:fontFamily="@font/nunitosemibold"
+                        android:textSize="14sp"
+                        android:textOff="AC"
+                        android:textOn="AC"
+                        android:textAllCaps="false"
+                        android:background="@drawable/togglebutton_selector"
+                        />
+                    <ToggleButton
+                        android:textColor="@drawable/toggletext_selector"
+                        android:clickable="false"
+                        android:id="@+id/detail_fitness"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:drawableStart="@drawable/detail_gym"
+                        android:fontFamily="@font/nunitosemibold"
+                        android:textSize="14sp"
+                        android:textOff="Fitness"
+                        android:textOn="Fitness"
+                        android:textAllCaps="false"
+                        android:background="@drawable/togglebutton_selector"
+                        />
+                    <ToggleButton
+                        android:textColor="@drawable/toggletext_selector"
+                        android:id="@+id/detail_pool"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:clickable="false"
+                        android:drawableStart="@drawable/detail_pool"
+                        android:fontFamily="@font/nunitosemibold"
+                        android:textSize="14sp"
+                        android:textOff="Pool"
+                        android:textOn="Pool"
+                        android:textAllCaps="false"
+                        android:background="@drawable/togglebutton_selector"
+                        />
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/detail_facilitylayout2">
+                <ToggleButton
+                    android:textColor="@drawable/toggletext_selector"
+                    android:id="@+id/detail_refrigerator"
+                    android:clickable="false"
+                    android:layout_marginEnd="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:drawableStart="@drawable/detail_fridge"
+                    android:fontFamily="@font/nunitosemibold"
+                    android:textSize="14sp"
+                    android:textOff="Refrigerator"
+                    android:textOn="Refrigerator"
+                    android:textAllCaps="false"
+                    android:background="@drawable/togglebutton_selector"
+                    />
+                <ToggleButton
+                    android:textColor="@drawable/toggletext_selector"
+                    android:id="@+id/detail_restaurant"
+                    android:clickable="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:drawableStart="@drawable/detail_restaurant"
+                    android:fontFamily="@font/nunitosemibold"
+                    android:textSize="14sp"
+                    android:textOff="Restaurant"
+                    android:textOn="AC"
+                    android:textAllCaps="false"
+                    android:background="@drawable/togglebutton_selector"
+                    />
+
 
 
             </LinearLayout>
+
+
+
+
+
+
 
 
 

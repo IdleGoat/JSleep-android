@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +30,7 @@ public class MeActivity extends AppCompatActivity {
     TextView name,email,balance;
     TextView Me_nameRenterEdit,Me_addressRenterEdit,Me_phoneRenterEdit;
     EditText nameRenterEdit,addressRenterEdit,phoneRenterEdit,me_topUpEdit;
-    ImageView logout;
+    ImageButton logout;
 
     Button cancelRenterBtn,registerRenterBtn,card1RegisterRenter,AddRoomBtn,TopUpBtn,SeeOrderBtn;
     ConstraintLayout norenter,yesrenter,me_norenter,me_renterregister,me_renterdisplay;

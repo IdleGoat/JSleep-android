@@ -31,6 +31,11 @@ public class CreatePaymentActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         mApiService = UtilsApi.getApiService();
         mContext = this;
         super.onCreate(savedInstanceState);

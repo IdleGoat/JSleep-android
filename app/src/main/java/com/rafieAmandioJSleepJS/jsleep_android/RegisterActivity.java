@@ -25,6 +25,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mApiService = UtilsApi.getApiService();

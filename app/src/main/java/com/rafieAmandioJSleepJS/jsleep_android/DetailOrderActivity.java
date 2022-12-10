@@ -33,6 +33,11 @@ public class DetailOrderActivity extends AppCompatActivity {
     Button accept,cancel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_order);
         mApiService = UtilsApi.getApiService();
