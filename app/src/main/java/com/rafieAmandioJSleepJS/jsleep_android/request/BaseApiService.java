@@ -86,5 +86,8 @@ public interface BaseApiService {
     @GET("payment/getOrderForRenter")
     Call<List<Payment>> getOrderForRenter(@Query("renterId") int renterId,@Query("page") int page,@Query("pageSize") int pageSize);
 
+    @GET("payment/getOrderForBuyer")
+    Call<List<Payment>> getOrderForBuyer(@Query("buyerId") int buyerId);
+
 
 }

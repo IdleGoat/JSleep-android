@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
     BaseApiService mApiService;
     Context mContext;
-    ImageView next,prev;
-    ImageView profile;
+    ImageView next,prev,go;
+    ImageView profile,history,search,profilemenu;
+    EditText etPage;
     ListView listView;
     List<Room> activitylist;
     public static ArrayList<Room> listRoom;
@@ -56,7 +58,23 @@ public class MainActivity extends AppCompatActivity {
         }
         catch (NullPointerException e){}
         setContentView(R.layout.activity_main);
+        search = findViewById(R.id.main_searchicon);
+        history = findViewById(R.id.main_historyicon);
+        profilemenu = findViewById(R.id.main_profileicon);
+        profilemenu.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MeActivity.class);
+            startActivity(intent);
+        });
+        search.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SearchRoomActivity.class);
+            startActivity(intent);
+        });
+        history.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, BuyerSeeOrderActivity.class);
+            startActivity(intent);
+        });
         profile = findViewById(R.id.main_profileimage);
+        etPage = findViewById(R.id.main_pageNumber);
         mApiService = UtilsApi.getApiService();
         mContext = this;
         activitylist = getRoomList(current);
@@ -66,12 +84,20 @@ public class MainActivity extends AppCompatActivity {
         });
         next = findViewById(R.id.main_nextbutton);
         prev = findViewById(R.id.main_prevbutton);
+        go = findViewById(R.id.main_gobutton);
         listView = (ListView) findViewById(R.id.main_availableRoomsList);
         listView.setOnItemClickListener(this::onItemClick);
+        go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activitylist = getRoomListGo(current);
+            }
+        });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 current += 1;
+                etPage.setText(String.valueOf(current-1));
                 activitylist = getRoomList(current);
             }
         });
@@ -83,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     current -= 1;
+                    etPage.setText(String.valueOf(current-1));
                     activitylist = getRoomList(current);
                 }
             }
@@ -102,17 +129,62 @@ public class MainActivity extends AppCompatActivity {
 
     protected List<Room> getRoomList(int page) {
         //System.out.println(pageSize);
-        mApiService.getAllRoom(page, 5).enqueue(new Callback<List<Room>>() {
+        mApiService.getAllRoom(page, 4).enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                 if (response.isSuccessful()) {
+
                     activitylist = response.body();
+                    if(activitylist.size() == 0){
+                        Toast.makeText(mContext, "No more room", Toast.LENGTH_SHORT).show();
+                        current -= 1;
+                    }
+                    else{
+                        listRoom = new ArrayList<Room>(activitylist);
+                        CustomListAdapter adapter = new CustomListAdapter(mContext, listRoom);
+                        listView.setAdapter(adapter);
+                        System.out.println("Berhasil get Room");
+                    }
                     assert activitylist != null;
-                    listRoom = new ArrayList<Room>(activitylist);
-                    CustomListAdapter adapter = new CustomListAdapter(mContext, listRoom);
-                    listView.setAdapter(adapter);
-                    System.out.println("Berhasil get Room");
-                    
+
+
+
+
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Room>> call, Throwable t) {
+                t.printStackTrace();
+                Toast.makeText(mContext, "get room failed", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        return null;
+    }
+
+    protected List<Room> getRoomListGo(int page) {
+        //System.out.println(pageSize);
+        mApiService.getAllRoom(page, 4).enqueue(new Callback<List<Room>>() {
+            @Override
+            public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
+                if (response.isSuccessful()) {
+
+                    activitylist = response.body();
+                    if(activitylist.size() == 0){
+                        Toast.makeText(mContext, "No Room in that page", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        current = page-1;
+                        listRoom = new ArrayList<Room>(activitylist);
+                        CustomListAdapter adapter = new CustomListAdapter(mContext, listRoom);
+                        listView.setAdapter(adapter);
+                        etPage.setText(String.valueOf(current+1));
+                        System.out.println("Berhasil get Room");
+                    }
+                    assert activitylist != null;
+
+
+
 
                 }
             }
@@ -140,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
         // Then you start a new Activity via Intent
         Intent intent = new Intent();
         roomIndex = position;
-        System.out.println("clicked");
 
         intent.setClass(mContext, DetailRoomActivity.class);
         intent.putExtra("position", position);

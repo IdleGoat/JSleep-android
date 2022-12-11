@@ -19,6 +19,7 @@ import com.rafieAmandioJSleepJS.jsleep_android.model.Room;
 import com.rafieAmandioJSleepJS.jsleep_android.request.BaseApiService;
 import com.rafieAmandioJSleepJS.jsleep_android.request.UtilsApi;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -27,7 +28,7 @@ import retrofit2.Response;
 
 
 public class OrderListAdapter extends ArrayAdapter<Payment> {
-
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public OrderListAdapter(@NonNull Context context, ArrayList<Payment> order) {
         super(context, 0, order);
@@ -46,7 +47,8 @@ public class OrderListAdapter extends ArrayAdapter<Payment> {
         TextView date = currentItemView.findViewById(R.id.payment_date);
         TextView status = currentItemView.findViewById(R.id.payment_status);
 
-        String dateText = currentOrder.to.toString() + " - " + currentOrder.from.toString();
+
+        String dateText = sdf.format(currentOrder.from) + " - " + sdf.format(currentOrder.to);
         date.setText(dateText);
 
         String statusText = "Status: " + currentOrder.status;

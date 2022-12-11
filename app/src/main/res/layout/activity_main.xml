@@ -136,9 +136,11 @@
 
 
         <ListView
+            android:dividerHeight="5dp"
+            android:divider="@color/background"
             android:id="@+id/main_availableRoomsList"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="380dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_availableRoomsText" />
@@ -155,12 +157,33 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/arrow_placeholder_icon"
                 android:layout_marginEnd="10dp"
+                android:layout_gravity="center"
                 android:rotationY="180"/>
             <ImageView
                 android:id="@+id/main_nextbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:src="@drawable/arrow_placeholder_icon"
+                />
+            <EditText
+                android:layout_marginStart="200dp"
+                android:id="@+id/main_pageNumber"
+                android:fontFamily="@font/nunitobold"
+                android:text="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                />
+
+            <ImageView
+                android:layout_marginStart="10dp"
+                android:id="@+id/main_gobutton"
+                android:rotationY="180"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/backarrow_icon"
                 />
 
 <!--            <EditText-->
@@ -181,6 +204,64 @@
 
 
 
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingStart="20dp"
+        >
+
+        <ImageView
+            android:id="@+id/main_homeicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_chosen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="30dp"
+
+            />
+
+        <ImageView
+            android:id="@+id/main_searchicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search_unchosen"
+
+            app:layout_constraintStart_toEndOf="@+id/main_homeicon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="70dp"
+            />
+
+        <ImageView
+            android:id="@+id/main_historyicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/history_unchosen"
+            app:layout_constraintStart_toEndOf="@+id/main_searchicon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="60dp"
+            />
+
+        <ImageView
+            android:id="@+id/main_profileicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile_unchosen"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

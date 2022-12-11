@@ -10,8 +10,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.rafieAmandioJSleepJS.jsleep_android.model.Room;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 /**
@@ -95,11 +101,44 @@ public class PaymentDetailActivity extends AppCompatActivity {
             public void onClick(android.view.View view) {
                 startdate = paymentdetail_edittext_start.getText().toString();
                 enddate = paymentdetail_edittext_end.getText().toString();
-                Intent move = new Intent(PaymentDetailActivity.this,CreatePaymentActivity.class);
-                startActivity(move);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    Date startdate = dateFormat.parse(PaymentDetailActivity.startdate);
+                    Date enddate = dateFormat.parse(PaymentDetailActivity.enddate);
+                    if(availability(startdate,enddate,DetailRoomActivity.clickedRoom)){
+                        Intent intent = new Intent(PaymentDetailActivity.this, CreatePaymentActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(PaymentDetailActivity.this, "Date Not Available", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
 
     }
+
+    public boolean availability(Date from, Date to, Room room){
+
+
+        if(from.after(to) || from.equals(to)){
+            return false;
+        }
+
+        for (Date i : room.booked) {
+            if (from.equals(i)) {
+                return false;
+            } else if(from.before(i)){
+                if(from.before(i) && to.after(i)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }

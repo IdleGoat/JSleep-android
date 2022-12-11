@@ -30,6 +30,7 @@ import retrofit2.http.Query;
 public class CreatePaymentActivity extends AppCompatActivity{
     BaseApiService mApiService;
     Payment payment;
+    double price;
     Context mContext;
     Button createbutton;
     TextView createpayment_from,createpayment_to,createpayment_title_name,createpayment_title_address,createpayment_price;
@@ -62,6 +63,7 @@ public class CreatePaymentActivity extends AppCompatActivity{
             createbutton = findViewById(R.id.createpayment_button);
             createpayment_from = findViewById(R.id.createpayment_from);
             createpayment_to = findViewById(R.id.createpayment_to);
+            price = (diffDays * DetailRoomActivity.clickedRoom.price.price);
             createpayment_price.setText(String.valueOf(((double)diffDays) * DetailRoomActivity.clickedRoom.price.price));
             createpayment_from.setText(PaymentDetailActivity.startdate);
             createpayment_to.setText(PaymentDetailActivity.enddate);
@@ -108,6 +110,7 @@ public class CreatePaymentActivity extends AppCompatActivity{
                     System.out.println("Success");
                     payment = response.body();
                     System.out.println(payment);
+                    LoginActivity.loggedAcc.balance -= price;
                     Intent move = new Intent(CreatePaymentActivity.this,MainActivity.class);
                     startActivity(move);
                     Toast.makeText(mContext, "Payment created", Toast.LENGTH_SHORT).show();

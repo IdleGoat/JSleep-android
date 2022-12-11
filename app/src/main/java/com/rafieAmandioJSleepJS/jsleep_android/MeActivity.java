@@ -26,11 +26,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * A main activity that shows the list of rooms.
+ * @author Rafie Amandio
+ * @version 1.0
+ */
 public class MeActivity extends AppCompatActivity {
     TextView name,email,balance;
     TextView Me_nameRenterEdit,Me_addressRenterEdit,Me_phoneRenterEdit;
     EditText nameRenterEdit,addressRenterEdit,phoneRenterEdit,me_topUpEdit;
-    ImageView logout;
+    ImageView logout,home,history,search;
 
     Button cancelRenterBtn,registerRenterBtn,card1RegisterRenter,AddRoomBtn,TopUpBtn,SeeOrderBtn;
     ConstraintLayout norenter,yesrenter,me_norenter,me_renterregister,me_renterdisplay;
@@ -49,7 +54,26 @@ public class MeActivity extends AppCompatActivity {
 
         mApiService = UtilsApi.getApiService();
         mContext = this;
+
+        home = findViewById(R.id.me_homeicon);
+        history = findViewById(R.id.me_historyicon);
+        search = findViewById(R.id.me_searchicon);
+
+        home.setOnClickListener(v -> {
+            Intent intent = new Intent(MeActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+        history.setOnClickListener(v -> {
+            Intent intent = new Intent(MeActivity.this, BuyerSeeOrderActivity.class);
+            startActivity(intent);
+        });
+        search.setOnClickListener(v -> {
+            Intent intent = new Intent(MeActivity.this, SearchRoomActivity.class);
+            startActivity(intent);
+        });
         logout = findViewById(R.id.me_logoutbutton);
+
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +90,7 @@ public class MeActivity extends AppCompatActivity {
         //Set name,email,balance TextView
         name.setText(LoginActivity.loggedAcc.name);
         email.setText(LoginActivity.loggedAcc.email);
-        String balanceText = "Rp. " + String.valueOf(LoginActivity.loggedAcc.balance);
+        String balanceText = "Rp " + String.valueOf(LoginActivity.loggedAcc.balance);
         balance.setText( balanceText );
 
         norenter = findViewById(R.id.me_norenterlayout);

@@ -4,20 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class BuyerOrderActivity extends AppCompatActivity {
+public class SearchRoomActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buyer_order);
+        setContentView(R.layout.activity_search_room);
     }
-
-
-
-
 }

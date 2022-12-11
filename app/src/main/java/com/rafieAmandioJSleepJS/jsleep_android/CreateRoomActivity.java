@@ -3,6 +3,7 @@ package com.rafieAmandioJSleepJS.jsleep_android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,7 +34,7 @@ public class CreateRoomActivity extends AppCompatActivity {
     ToggleButton ac;
     EditText etName, etSize, etPrice, etAddress;
     ArrayList<Facility> facility = new ArrayList<Facility>();
-    CheckBox  fridge, wifi, bathub, balcony, restaurant, pool, fitness;
+    ToggleButton  fridge, wifi, bathub, balcony, restaurant, pool, fitness;
     Spinner Spinnercity, Spinnerbedtype;
 
     @Override
@@ -47,23 +48,23 @@ public class CreateRoomActivity extends AppCompatActivity {
         mContext = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_room);
-        Spinnercity = findViewById(R.id.SpinnerCity);
-        Spinnerbedtype = findViewById(R.id.SpinnerBedType);
-        btnCreateRoom = findViewById(R.id.room_createbutton);
+        Spinnercity = findViewById(R.id.createroom_spinner_city);
+        Spinnerbedtype = findViewById(R.id.createroom_spinner_bed);
+        btnCreateRoom = findViewById(R.id.createroom_button);
 
-        ac = findViewById(R.id.CheckAC);
-        fridge = findViewById(R.id.CheckRefrigirator);
-        wifi = findViewById(R.id.CheckWiFi);
-        bathub = findViewById(R.id.CheckBathTub);
-        balcony = findViewById(R.id.CheckBalcony);
-        restaurant = findViewById(R.id.CheckRestaurant);
-        pool = findViewById(R.id.CheckSwimming);
-        fitness = findViewById(R.id.CheckFitness);
+        ac = findViewById(R.id.createroom_ac);
+        fridge = findViewById(R.id.createroom_refrigerator);
+        wifi = findViewById(R.id.createroom_wifi);
+        bathub = findViewById(R.id.createroom_bathtub);
+        balcony = findViewById(R.id.createroom_balcony);
+        restaurant = findViewById(R.id.createroom_restaurant);
+        pool = findViewById(R.id.createroom_pool);
+        fitness = findViewById(R.id.createroom_fitness);
 
-        etName = findViewById(R.id.NameHotel);
-        etSize = findViewById(R.id.SizeHotel);
-        etPrice = findViewById(R.id.PriceHotel);
-        etAddress = findViewById(R.id.AddressHotel);
+        etName = findViewById(R.id.createroom_name);
+        etSize = findViewById(R.id.createroom_size);
+        etPrice = findViewById(R.id.createroom_price);
+        etAddress = findViewById(R.id.createroom_address);
 
         Spinnerbedtype.setAdapter(new ArrayAdapter<BedType>(this, android.R.layout.simple_spinner_item, BedType.values()));
         Spinnercity.setAdapter(new ArrayAdapter<City>(this, android.R.layout.simple_spinner_item, City.values()));
@@ -129,7 +130,9 @@ public class CreateRoomActivity extends AppCompatActivity {
                     System.out.println("Request Berhasil");
                     Room responseq = response.body();
                     System.out.println(responseq.toString());
-
+                    Toast.makeText(mContext, "Room Created", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CreateRoomActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
             }
 
