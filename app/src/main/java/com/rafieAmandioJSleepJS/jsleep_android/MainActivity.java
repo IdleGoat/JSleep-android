@@ -97,14 +97,13 @@ public class MainActivity extends AppCompatActivity {
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activitylist = getRoomListGo(current);
+                activitylist = getRoomListGo(Integer.parseInt(etPage.getText().toString()));
             }
         });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 current += 1;
-                etPage.setText(String.valueOf(current-1));
                 activitylist = getRoomList(current);
             }
         });
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     current -= 1;
-                    etPage.setText(String.valueOf(current-1));
+                    //etPage.setText(String.valueOf(current));
                     activitylist = getRoomList(current);
                 }
             }
@@ -147,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
                         current -= 1;
                     }
                     else{
+                        etPage.setText(String.valueOf(page+1));
                         listRoom = new ArrayList<Room>(activitylist);
                         CustomListAdapter adapter = new CustomListAdapter(mContext, listRoom);
                         listView.setAdapter(adapter);
@@ -171,7 +171,8 @@ public class MainActivity extends AppCompatActivity {
 
     protected List<Room> getRoomListGo(int page) {
         //System.out.println(pageSize);
-        mApiService.getAllRoom(page, 4).enqueue(new Callback<List<Room>>() {
+
+        mApiService.getAllRoom(page-1, 4).enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                 if (response.isSuccessful()) {

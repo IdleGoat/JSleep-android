@@ -77,6 +77,7 @@ public class MeActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LoginActivity.loggedAcc = null;
                 Intent intent = new Intent(MeActivity.this, LoginActivity.class);
                 startActivity(intent);
             }

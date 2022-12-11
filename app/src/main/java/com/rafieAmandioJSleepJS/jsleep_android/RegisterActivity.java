@@ -21,7 +21,7 @@ import retrofit2.Response;
 public class RegisterActivity extends AppCompatActivity {
     BaseApiService mApiService;
     Context mContext;
-    EditText name,email,pass;
+    EditText name,email,pass,passconf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +37,21 @@ public class RegisterActivity extends AppCompatActivity {
         EditText email = findViewById(R.id.register_editemail);
         EditText pass = findViewById(R.id.register_editpassword);
         EditText name = findViewById(R.id.register_editname);
+        EditText passconf = findViewById(R.id.register_confeditpassword);
         Button register = findViewById(R.id.register_button);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String tempemail = email.getText().toString();
-                String temppass = pass.getText().toString();
-                String tempname = name.getText().toString();
-                Account account = requestRegister(tempemail,temppass,tempname);
+                if (passconf.getText().toString().equals(pass.getText().toString())){
+                    String tempemail = email.getText().toString();
+                    String temppass = pass.getText().toString();
+                    String tempname = name.getText().toString();
+                    Account account = requestRegister(tempemail,temppass,tempname);
+                }
+                else{
+                    Toast.makeText(mContext, "Password doesn't match", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

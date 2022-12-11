@@ -342,7 +342,7 @@
                     android:drawablePadding="12dp"
                     android:fontFamily="@font/nunitosemibold"
                     android:hint="PhoneNumber"
-                    android:inputType="textPassword"
+                    android:inputType="phone"
                     android:textColor="@color/placeholder"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
