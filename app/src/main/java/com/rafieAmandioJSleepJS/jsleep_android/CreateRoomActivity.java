@@ -26,6 +26,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Activity to create Room
+ * @author Rafie Amandio
+ */
 public class CreateRoomActivity extends AppCompatActivity {
 
     Context mContext;

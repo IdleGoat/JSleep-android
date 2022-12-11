@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,6 +25,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Activity to see all buyer order
+ * @author Rafie
+ *
+ */
 public class BuyerSeeOrderActivity extends AppCompatActivity {
 
     ListView buyerSeeOrderListView;
@@ -31,6 +37,7 @@ public class BuyerSeeOrderActivity extends AppCompatActivity {
     public static int orderIndex;
     Context mContext;
     BaseApiService mApiService;
+    ImageView home,history,search,profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +50,31 @@ public class BuyerSeeOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_buyer_see_order);
         mApiService = UtilsApi.getApiService();
         mContext = this;
+        home = findViewById(R.id.main_homeicon);
+        history = findViewById(R.id.main_historyicon);
+        search = findViewById(R.id.main_searchicon);
+        profile = findViewById(R.id.main_profileicon);
+        home.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, MainActivity.class);
+            startActivity(intent);
+        });
+        search.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, SearchRoomActivity.class);
+            startActivity(intent);
+        });
+        profile.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, MeActivity.class);
+            startActivity(intent);
+        });
         buyerSeeOrderListView = findViewById(R.id.buyerseeorder_ListView);
         getOrderForBuyer(LoginActivity.loggedAcc.id);
         buyerSeeOrderListView.setOnItemClickListener(this::onItemClick);
     }
 
+    /**
+     * API request for order with buyer Id
+     * @param buyerId buyer id that we want to search
+     */
     protected void getOrderForBuyer(int buyerId){
         System.out.println("masuk");
         System.out.println(buyerId);

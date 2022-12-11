@@ -14,7 +14,10 @@ import androidx.annotation.Nullable;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Room;
 
 import java.util.ArrayList;
-
+/**
+ * Custom List Adapter for Room
+ * @author Rafie Amandio
+ */
 public class CustomListAdapter extends ArrayAdapter<Room> {
 
     public CustomListAdapter(@NonNull Context context, ArrayList<Room> rooms) {

@@ -27,6 +27,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.http.Query;
 
+/**
+ * Activity to create payment
+ * @author Rafie Amandio
+ */
 public class CreatePaymentActivity extends AppCompatActivity{
     BaseApiService mApiService;
     Payment payment;

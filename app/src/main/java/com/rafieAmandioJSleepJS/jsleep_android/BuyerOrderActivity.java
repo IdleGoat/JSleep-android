@@ -19,6 +19,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Activity to see detail of order
+ * @author Rafie
+ *
+ */
 public class BuyerOrderActivity extends AppCompatActivity {
     BaseApiService mApiService;
     Context mContext;

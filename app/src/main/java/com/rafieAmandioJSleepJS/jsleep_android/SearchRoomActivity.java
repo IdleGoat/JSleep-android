@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -36,11 +37,17 @@ public class SearchRoomActivity extends AppCompatActivity {
     ArrayList<Room> roomListArray;
     BaseApiService mApiService;
     Context mContext;
+    ImageView logout,home,history,search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_room);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
 
         mApiService = UtilsApi.getApiService();
         mContext = this;

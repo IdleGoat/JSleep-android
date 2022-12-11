@@ -11,6 +11,10 @@ import android.widget.ToggleButton;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Facility;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Room;
 
+/**
+ * Room detail Activity
+ * @autho Rafie Amandio
+ */
 public class DetailRoomActivity extends AppCompatActivity {
 
     public static Room clickedRoom;

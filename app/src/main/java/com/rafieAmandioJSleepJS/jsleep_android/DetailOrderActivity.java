@@ -26,6 +26,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Order Detail
+ * @author Rafie Amandio
+ */
 public class DetailOrderActivity extends AppCompatActivity {
     BaseApiService mApiService;
     Context mContext;
