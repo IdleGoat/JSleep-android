@@ -92,4 +92,10 @@ public interface BaseApiService {
     @GET("room/collectByName")
     Call<List<Room>> collectByName(@Query("name") String name);
 
+    @GET("room/collectByPrice")
+    Call<List<Room>> collectByPrice(@Query("min") int min,@Query("max") int max);
+
+    @GET("room/filterByCity")
+    Call<List<Room>> collectByCity(@Query("city") City city);
+
 }
