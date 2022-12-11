@@ -89,5 +89,7 @@ public interface BaseApiService {
     @GET("payment/getOrderForBuyer")
     Call<List<Payment>> getOrderForBuyer(@Query("buyerId") int buyerId);
 
+    @GET("room/collectByName")
+    Call<List<Room>> collectByName(@Query("name") String name);
 
 }

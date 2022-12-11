@@ -27,21 +27,25 @@ import retrofit2.Response;
 public class BuyerSeeOrderActivity extends AppCompatActivity {
 
     ListView buyerSeeOrderListView;
-    ArrayList<Payment> paymentArrayList;
-    int orderIndex;
+    public static ArrayList<Payment> paymentArrayList;
+    public static int orderIndex;
     Context mContext;
     BaseApiService mApiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_see_order);
         mApiService = UtilsApi.getApiService();
         mContext = this;
         buyerSeeOrderListView = findViewById(R.id.buyerseeorder_ListView);
         getOrderForBuyer(LoginActivity.loggedAcc.id);
-
-
+        buyerSeeOrderListView.setOnItemClickListener(this::onItemClick);
     }
 
     protected void getOrderForBuyer(int buyerId){
@@ -78,7 +82,7 @@ public class BuyerSeeOrderActivity extends AppCompatActivity {
         orderIndex = position;
         System.out.println("clicked");
 
-        intent.setClass(mContext, DetailOrderActivity.class);
+        intent.setClass(mContext, BuyerOrderActivity.class);
         intent.putExtra("position", position);
         intent.putExtra("id", id);
         startActivity(intent);
