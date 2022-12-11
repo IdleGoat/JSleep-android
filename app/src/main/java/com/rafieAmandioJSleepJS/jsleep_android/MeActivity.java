@@ -30,7 +30,7 @@ public class MeActivity extends AppCompatActivity {
     TextView name,email,balance;
     TextView Me_nameRenterEdit,Me_addressRenterEdit,Me_phoneRenterEdit;
     EditText nameRenterEdit,addressRenterEdit,phoneRenterEdit,me_topUpEdit;
-    ImageButton logout;
+    ImageView logout;
 
     Button cancelRenterBtn,registerRenterBtn,card1RegisterRenter,AddRoomBtn,TopUpBtn,SeeOrderBtn;
     ConstraintLayout norenter,yesrenter,me_norenter,me_renterregister,me_renterdisplay;

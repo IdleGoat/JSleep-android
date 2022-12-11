@@ -9,15 +9,23 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Calendar;
 
+
+/**
+ * A login screen that offers login via email/password.
+ * @author Rafie Amandio
+ * @version 1.0
+ */
 public class PaymentDetailActivity extends AppCompatActivity {
 
     public static String enddate;
     public static String startdate;
     Button paymentdetail_button;
-    ImageView paymentdetail_image;
+    ImageView paymentdetail_image,paymentdetail_backimage;
+    TextView paymentdetail_title_name,paymentdetail_title_address;
     EditText paymentdetail_edittext_start, paymentdetail_edittext_end;
     DatePickerDialog datePickerDialogEnd,datePickerDialogStart;
 
@@ -31,6 +39,16 @@ public class PaymentDetailActivity extends AppCompatActivity {
         catch (NullPointerException e){}
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_detail);
+
+        paymentdetail_title_name = findViewById(R.id.paymentdetail_title_name);
+        paymentdetail_title_address = findViewById(R.id.paymentdetail_title_address);
+        paymentdetail_title_name.setText(DetailRoomActivity.clickedRoom.name);
+        paymentdetail_title_address.setText(DetailRoomActivity.clickedRoom.address);
+        paymentdetail_backimage = findViewById(R.id.paymentdetail_backbutton);
+        paymentdetail_backimage.setOnClickListener( v -> {
+            Intent intent = new Intent(PaymentDetailActivity.this, DetailRoomActivity.class);
+            startActivity(intent);
+        });
 
         final Calendar c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR);

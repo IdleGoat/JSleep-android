@@ -1,6 +1,7 @@
 package com.rafieAmandioJSleepJS.jsleep_android.request;
 
 import com.rafieAmandioJSleepJS.jsleep_android.model.Account;
+import com.rafieAmandioJSleepJS.jsleep_android.model.BedType;
 import com.rafieAmandioJSleepJS.jsleep_android.model.City;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Facility;
 import com.rafieAmandioJSleepJS.jsleep_android.model.Payment;
@@ -72,8 +73,9 @@ public interface BaseApiService {
             @Query("price") int price,
             @Query("facility") ArrayList<Facility> facility,
             @Query("city") City city,
-            @Query("address") String address
-    );
+            @Query("address") String address,
+            @Query("bedType")BedType bedType
+            );
 
     @POST("payment/{id}/accept")
     Call<Boolean> accept(@Path("id") int id);

@@ -1,5 +1,6 @@
 package com.rafieAmandioJSleepJS.jsleep_android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -129,4 +130,26 @@ public class DetailOrderActivity extends AppCompatActivity {
         });
         return null;
     }
+
+//    protected Room getRoom(int roomId){
+//        System.out.println("Callback");
+//
+//        mApiService.getRoom(roomId).enqueue(new Callback<Room>() {
+//
+//            @Override
+//            public void onResponse(@NonNull Call<Room> call, @NonNull Response<Room> response) {
+//                if(response.isSuccessful()){
+//                    System.out.println("Success");
+//                    temproom = response.body();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<Room> call, @NonNull Throwable t) {
+//                Toast.makeText(mContext, "Create Payment Failed", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        return null;
+//    }
+
 }
