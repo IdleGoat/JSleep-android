@@ -1,6 +1,7 @@
 package com.rafieAmandioJSleepJS.jsleep_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     BaseApiService mApiService;
+    ConstraintLayout lihatSemua;
     Context mContext;
     ImageView next,prev,go;
     ImageView profile,history,search,profilemenu;
@@ -61,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
         search = findViewById(R.id.main_searchicon);
         history = findViewById(R.id.main_historyicon);
         profilemenu = findViewById(R.id.main_profileicon);
+        lihatSemua = findViewById(R.id.main_lihatsemuaLayout);
+        lihatSemua.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, SearchRoomActivity.class);
+            startActivity(intent);
+        });
         profilemenu.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, MeActivity.class);
             startActivity(intent);
